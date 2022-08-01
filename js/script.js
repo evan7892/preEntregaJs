@@ -1,5 +1,5 @@
 
-//Función de bienvenida
+/* //Función de bienvenida
 function bienvenida() {
     alert("Bienvenido/a acabas de ingresar al carrito de compras de Elite Gaming")
 }
@@ -359,6 +359,35 @@ function busquedaPrecio() {
     const encontrarPrecio = productos.find((producto) => producto.precio == precioIngresado);
     console.log(encontrarPrecio);
 }
+ */
+
+
+//dom y eventos
+
+const btnComprar = document.getElementById("botonComprar")
+btnComprar.addEventListener("click",()=>alert("Aún no está disponible"));
+
+let readMore_btn = document.getElementById('readMore_btn');
+let hideText = document.getElementById('foot');
+
+readMore_btn.addEventListener('mouseup', toggleText);
+
+function toggleText() {
+  hideText.classList.toggle('show');
+
+  if(hideText.classList.contains('show')) {
+    readMore_btn.innerHTML = 'Ver menos'
+  }
+  else {
+    readMore_btn.innerHTML = 'Ver más'
+  }
+}
+
+
+
+
+
+
 //llamado de funciones
-bienvenida();
-menu()
+/* bienvenida();
+menu() */

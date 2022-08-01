@@ -2144,6 +2144,10 @@ ul.social_icon li a:hover {
      background-color: #051108;
      text-align: center;
      font-family: poppins;
+     display: none;
+}
+.show{
+     display: block;
 }
 
 .footer .headinga h3 {
