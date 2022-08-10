@@ -1758,7 +1758,26 @@ input[type="radio"] .styled:checked+label::after {
      text-align: center;
      border-radius: 30px;
 }
-
+.banner-main .carousel-caption .registrate{
+     color: rgb(24, 163, 182);
+     font-weight: 500;
+     font-size: 17px;
+     padding: 18px;
+     border-radius: 30px;
+     margin-right: 20px;
+     background-color: white;
+}
+.banner-main .carousel-caption .registrate:hover{
+     border: #000000 solid 1px;
+     background: #000000;
+     color: rgb(20, 247, 255);
+}
+.form-signin {
+     width: 100%;
+     max-width: 330px;
+     padding: 15px;
+     margin: auto;
+ }
 .banner-main .carousel-caption .buynow:hover {
      border: #000000 solid 1px;
      background: #000000;
@@ -2000,15 +2019,30 @@ ul.social_icon li a:hover {
 .brand-bg .brand_box img:hover {
      opacity: 0.4;
      filter: brightness(1.2);
-     background-image: url(../images/carrito.png);
-     background-position: center;
-     background-size: 50px;
-     background-repeat: no-repeat;
+     position: relative;
 }
 
+.brand-bg .brand_box button{
+     background-color: rgb(210, 250, 255);
+     color: black;
+     font-size: 20px;
+     padding: 10px;
+     border-radius: 10px;
+     margin-right: 80px;
+     margin-left: 80px;
+}
+.brand-bg .brand_box button img{
+   width: 12%;
+   margin-bottom: 2px;
+}
+.brand-bg .brand_box button:hover{
+     font-size: 23px;
+     color: rgb(0, 0, 0);
+     background-color: rgb(255, 255, 255);
+}
 .brand-bg .brand_box:hover {
      border-radius: 20px;
-     border: black solid;
+     border: black solid 5px;
      background-color: rgb(188, 242, 255);
 }
 

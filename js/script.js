@@ -370,7 +370,7 @@ btnComprar.addEventListener("click",()=>alert("Aún no está disponible"));
 let readMore_btn = document.getElementById('readMore_btn');
 let hideText = document.getElementById('foot');
 
-readMore_btn.addEventListener('mouseup', toggleText);
+readMore_btn.addEventListener('click', toggleText);
 
 function toggleText() {
   hideText.classList.toggle('show');
@@ -382,7 +382,6 @@ function toggleText() {
     readMore_btn.innerHTML = 'Ver más'
   }
 }
-
 
 
 
