@@ -14,7 +14,6 @@ function recordarme(storage) {
 
     }
 
-
 /*     if (storage === "localStorage") {
         localStorage.setItem("user", JSON.stringify(usuario));
     } */
