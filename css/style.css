@@ -496,6 +496,8 @@ ul.top_icon li a {
 .menu-area-main li.product .submenu a {
      color: #000000;
      font-size: 18px;
+     margin-top: none
+     ;
 
 }
 
@@ -520,7 +522,12 @@ ul.top_icon li a {
      margin: 0;
      padding: 12px 0 0;
 }
-
+.textoConversor{
+     font-size: 20px;
+     text-decoration: none;
+     text-align: center;
+     color: blueviolet;
+}
 .right_cart_section .cart_icons {
      padding: 18px 0 0;
 }
