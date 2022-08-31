@@ -1,0 +1,38 @@
+[
+    {
+      "precio": 750.000,
+      "id": 1,
+      "title": "Microfono Hyper x",
+      "imgUrl": "./images/1.png"
+    },
+    {
+      "precio": 120.000,
+      "id": 2,
+      "title": "Mouse Logitech G203",
+      "imgUrl": "./images/2.png"
+    },
+    {
+      "precio": 789.900,
+      "id": 3,
+      "title": "Logitech Brio 4k",
+      "imgUrl": "./images/3.png"
+    },
+    {
+        "precio": 600.000,
+        "id": 4,
+        "title": "Monitor gamer Samsung F22T35",
+        "imgUrl": "./images/4.png"
+      },
+    {
+      "precio": 350.000,
+      "id": 5,
+      "title": "Teclado mecánico logitech G413",
+      "imgUrl": "./images/5.png"
+    },
+    {
+      "precio": 90.000,
+      "id": 6,
+      "title": "Mouse Pad gamer Logitech G640",
+      "imgUrl": "./images/6.png"
+    }
+  ]

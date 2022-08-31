@@ -1,186 +1,159 @@
-const opcionUno = document.getElementById('moneda-uno');
-const opcionDos = document.getElementById('moneda-dos');
-const cantidadUno = document.getElementById('cantidad-uno');
-const cantidadDos = document.getElementById('cantidad-dos');
-const cambioEl = document.getElementById('cambio');
-const tazaEl = document.getElementById('taza');
+const cards = document.getElementById("cards")
+const items = document.getElementById("items")
+const footer = document.getElementById("footer")
+const templateCard = document.getElementById("template-micro").content
+const fragment = document.createDocumentFragment()
+const templateFooter = document.getElementById("template-footer").content
+const templateCarrito = document.getElementById("template-carrito").content
+
+let carrito = {}
 
 
-function calcular(){
-    const monedaUno = opcionUno.value;
-    const monedaDos = opcionDos.value;
 
-   fetch(`https://api.exchangerate-api.com/v4/latest/${monedaUno}`)
-   .then(res => res.json() )
-   .then(data => {
-       const taza = data.rates[monedaDos];
-       
-       cambioEl.innerText = `1 ${monedaUno} = ${taza} ${monedaDos}`;
+document.addEventListener('DOMContentLoaded', ()=>{
+  fetchData()
+  if(localStorage.getItem("carrito")){
+    carrito = JSON.parse(localStorage.getItem("carrito"))
+    pintarCarrito()
+  }
+})
+cards.addEventListener("click", e =>{
+  addCarrito(e)
+})
 
-       cantidadDos.value = (cantidadUno.value * taza).toFixed(2);
+items.addEventListener("click", e => {
+  btnAccion(e)
+})
 
-    } );
+const fetchData = async () =>{
+  try {
+    const res = await fetch('./js/data.json')
+
+    const data = await res.json()
+
+    /* console.log(data); */
+    pintarCards (data)
+  } catch (error) {
     
-}
-
-opcionUno.addEventListener('change', calcular);
-cantidadUno.addEventListener('input', calcular);
-opcionDos.addEventListener('change', calcular);
-cantidadDos.addEventListener('input', calcular);
-
-taza.addEventListener('click', () =>{
-    const temp = opcionUno.value;
-    opcionUno.value = opcionDos.value;
-    opcionDos.value = temp;
-    calcular();
-} );
-
-
-calcular();
-
-
-
-const btnSwal = document.getElementById("btnUno")
-const btnSwal2 = document.getElementById("btnDos")
-const btnSwal3 = document.getElementById("btnTres")
-const btnSwal4 = document.getElementById("btnCuatro")
-const btnSwal5 = document.getElementById("btnCinco")
-const btnSwal6 = document.getElementById("btnSeis")
-
-btnSwal.onclick = () => {
-  Swal.fire({
-    title: '¿Deseas añadir Microfono Hyper x Quadcast al carrito?',
-    text: "Se añadirá a tu carrito",
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Si, deseo añadirlo',
-    cancelButtonText: "No deseo añadirlo"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire(
-        'Añadiste Hyper x Quadcast al carrito ',
-        'Tu producto se añadió al carrito.',
-
-      )
-    }
-  })
-}
-btnSwal2.onclick = () => {
-  Swal.fire({
-    title: '¿Deseas añadir Mouse Logitech G203 al carrito?',
-    text: "Se añadirá a tu carrito",
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Si, deseo añadirlo',
-    cancelButtonText: "No deseo añadirlo"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire(
-        'Añadiste Mouse Logitech G203 al carrito ',
-        'Tu producto se añadió al carrito.',
-
-      )
-    }
-  })
-}
-btnSwal3.onclick = () => {
-  Swal.fire({
-    title: '¿Deseas añadir Logitech brio 4k al carrito?',
-    text: "Se añadirá a tu carrito",
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Si, deseo añadirlo',
-    cancelButtonText: "No deseo añadirlo"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire(
-        'Añadiste Logitech brio 4k al carrito ',
-        'Tu producto se añadió al carrito.',
-
-      )
-    }
-  })
-}
-btnSwal4.onclick = () => {
-  Swal.fire({
-    title: '¿Deseas añadir Monitor gamer Samsung F22T35 al carrito?',
-    text: "Se añadirá a tu carrito",
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Si, deseo añadirlo',
-    cancelButtonText: "No deseo añadirlo"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire(
-        'Añadiste Monitor gamer Samsung F22T35 al carrito ',
-        'Tu producto se añadió al carrito.',
-
-      )
-    }
-  })
-}
-btnSwal5.onclick = () => {
-  Swal.fire({
-    title: '¿Deseas añadir Teclado mecánico logitech G413 al carrito?',
-    text: "Se añadirá a tu carrito",
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Si, deseo añadirlo',
-    cancelButtonText: "No deseo añadirlo"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire(
-        'Añadiste Teclado mecánico logitech G413 al carrito ',
-        'Tu producto se añadió al carrito.',
-
-      )
-    }
-  })
-}
-btnSwal6.onclick = () => {
-  Swal.fire({
-    title: '¿Deseas añadir Mouse Pad gamer Logitech G6403 al carrito?',
-    text: "Se añadirá a tu carrito",
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Si, deseo añadirlo',
-    cancelButtonText: "No deseo añadirlo"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire(
-        'Añadiste Mouse Pad gamer Logitech G640 al carrito ',
-        'Tu producto se añadió al carrito.',
-
-      )
-    }
-  })
-}
-
-
-let readMore_btn = document.getElementById('readMore_btn');
-let hideText = document.getElementById('foot');
-
-readMore_btn.addEventListener('click', toggleText);
-
-function toggleText() {
-  hideText.classList.toggle('show');
-
-  if (hideText.classList.contains('show')) {
-    readMore_btn.innerHTML = 'Ver menos'
   }
-  else {
-    readMore_btn.innerHTML = 'Ver más'
+}
+
+
+const pintarCards = data => {
+  data.forEach(producto => {
+    templateCard.querySelector("h5").textContent = producto.title
+    templateCard.querySelector("p").textContent = producto.precio
+    templateCard.querySelector("img").setAttribute("src", producto.imgUrl);
+    templateCard.querySelector(".btn-dark").dataset.id = producto.id
+    
+    const clone = templateCard.cloneNode(true)
+    fragment.appendChild(clone)
+  });
+  cards.appendChild(fragment)
+}
+
+const addCarrito = e => {
+ /*  console.log(e.target);
+  console.log(e.target.classList.contains("btn-dark")); */
+  if ((e.target.classList.contains("btn-dark"))) {
+    setCarrito(e.target.parentElement)
   }
+  e.stopPropagation()
+}
+
+const setCarrito = objeto =>{
+/* console.log(objeto); */
+const producto ={
+  id: objeto.querySelector(".btn-dark").dataset.id,
+  title: objeto.querySelector("h5").textContent,
+  precio: objeto.querySelector("p").textContent,
+  cantidad :1
+}
+
+if(carrito.hasOwnProperty(producto.id)){
+  producto.cantidad= carrito [producto.id].cantidad + 1
+}
+
+carrito[producto.id]={...producto}
+pintarCarrito()
+
+}
+
+
+const pintarCarrito = () => {
+/* console.log(carrito); */
+items.innerHTML=""
+Object.values(carrito).forEach(producto=>{
+  templateCarrito.querySelector("th").textContent = producto.id
+  templateCarrito.querySelectorAll("td")[0].textContent = producto.title
+  templateCarrito.querySelectorAll("td")[1].textContent = producto.cantidad
+  templateCarrito.querySelector(".btn-info").dataset.id = producto.id
+  templateCarrito.querySelector(".btn-danger").dataset.id = producto.id
+  templateCarrito.querySelector("span").textContent = producto.cantidad * producto.precio
+
+  const clone = templateCarrito.cloneNode(true)
+  fragment.appendChild(clone)
+})
+items.appendChild(fragment)
+
+
+pintarFooter()
+
+localStorage.setItem("carrito", JSON.stringify(carrito))
+
+}
+const pintarFooter = () => {
+  footer.innerHTML = ""
+  if(Object.keys(carrito).length === 0){
+    footer.innerHTML = `
+    <th scope="row" colspan="5">Carrito vacío - comience a comprar!</th>
+    `
+    return
+  }
+
+
+  const nCantidad = Object.values(carrito).reduce((acc, {cantidad})=> acc + cantidad, 0)
+  const nPrecio = Object.values(carrito).reduce((acc, {cantidad, precio})=>acc + cantidad * precio,0)
+  console.log(nPrecio);
+
+
+
+
+  templateFooter.querySelectorAll("td")[0].textContent = nCantidad
+  templateFooter.querySelector("span").textContent = nPrecio
+
+  const clone = templateFooter.cloneNode(true)
+  fragment.appendChild(clone)
+  footer.appendChild(fragment)
+
+  const btnVaciar = document.getElementById("vaciar-carrito")
+  btnVaciar.addEventListener("click", ()=>{
+    Swal.fire({
+      icon: 'success',
+      title: 'Vaciaste tu carrito!',
+      text: 'Puedes volver a meter productos al carrito',
+    })
+    carrito = {}
+    pintarCarrito ()
+  })
+}
+
+const btnAccion = e => {
+ /*  console.log(e.target); */
+  if(e.target.classList.contains("btn-info")){
+    const producto = carrito[e.target.dataset.id]
+    producto.cantidad++
+    carrito[e.target.dataset.id] = {...producto}
+    pintarCarrito ()
+  }
+
+  if(e.target.classList.contains("btn-danger")){
+    const producto = carrito[e.target.dataset.id]
+    producto.cantidad--
+    if(producto.cantidad === 0){
+      delete carrito[e.target.dataset.id]
+    }
+    pintarCarrito()
+  }
+  e.stopPropagation()
 }
